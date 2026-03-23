@@ -15,6 +15,27 @@ class BRImoUI extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+
+  Widget menuUtama(IconData icon, String title) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Icon(icon, color: Color(0xFF00529C), size: 26),
+        ),
+        SizedBox(height: 6),
+        Text(
+          title,
+          style: TextStyle(fontSize: 12, color: Colors.black),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +72,7 @@ class HomePage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text("Selamat Pagi",
+                        Text("Selamat Malam",
                           style: TextStyle(color: Colors.white70),
                         ),
                         Text("MOH.SEPTIANTO H.A",
@@ -140,6 +161,18 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+
+                SizedBox(height: 16),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    menuUtama(Icons.swap_horiz, "Transfer"),
+                    menuUtama(Icons.account_balance_wallet, "BRIVA"),
+                    menuUtama(Icons.water_drop, "PDAM"),
+                    menuUtama(Icons.phone_android, "Pulsa/Data"),
+                  ],
                 ),
 
               ],
