@@ -36,16 +36,33 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget menuGrid(IconData icon, String title) {
+  Widget menuGrid(IconData icon, String title, {bool notif = false}) {
     return Column(
       children: [
-        Container(
-          padding: EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: Icon(icon, size: 28, color: Color(0xFF00529C)),
+        Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(icon, size: 28, color: Color(0xFF00529C)),
+            ),
+            if (notif)
+              Positioned(
+                right: 2,
+                top: 2,
+                child: Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              )
+          ],
         ),
         SizedBox(height: 6),
         Text(
@@ -54,6 +71,34 @@ class HomePage extends StatelessWidget {
           style: TextStyle(fontSize: 11),
         ),
       ],
+    );
+  }
+
+  Widget bannerItem() {
+    return Container(
+      width: 220,
+      margin: EdgeInsets.only(right: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        image: DecorationImage(
+          image: AssetImage("assets/images/promo2.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          gradient: LinearGradient(
+            colors: [
+              Colors.black.withOpacity(0.6),
+              Colors.transparent,
+            ],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+          ),
+        ),
+      ),
     );
   }
 
@@ -212,6 +257,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               child: Container(
+                padding: EdgeInsets.all(12),
+                alignment: Alignment.bottomLeft,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
                   color: Colors.black.withOpacity(0.3),
@@ -236,7 +283,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Icon(Icons.search),
                           SizedBox(width: 8),
-                          Text("Cari Fitur")
+                          Text("Cari Fitur"),
                         ],
                       ),
                     ),
@@ -283,6 +330,55 @@ class HomePage extends StatelessWidget {
             ),
 
             SizedBox(height: 20),
+
+            Divider(
+              color: Colors.grey.shade300,
+              thickness: 6,
+            ),
+
+            SizedBox(height: 10),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Text(
+                    "Spesial Untukmo",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+
+                  SizedBox(height: 6),
+
+                  Text(
+                    "Cobain beragam cara baru untuk\nmemaksimalkan aktivitas perbankan kamu",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                    ),
+                  ),
+
+                  SizedBox(height: 14),
+
+                  SizedBox(
+                    height: 120,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        bannerItem(),
+                      ],
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+
+            SizedBox(height: 30),
 
           ],
         ),
