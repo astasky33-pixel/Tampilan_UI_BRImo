@@ -200,6 +200,45 @@ class HomePage extends StatelessWidget {
 
             SizedBox(height: 20),
 
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.search),
+                          SizedBox(width: 8),
+                          Text("Cari Fitur")
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(width: 10),
+
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE6F0FA),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text("Atur Fitur"),
+                  )
+
+                ],
+              ),
+            ),
+
+            SizedBox(height: 20),
+
           ],
         ),
       ),
