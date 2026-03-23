@@ -36,6 +36,27 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget menuGrid(IconData icon, String title) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Icon(icon, size: 28, color: Color(0xFF00529C)),
+        ),
+        SizedBox(height: 6),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 11),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,7 +225,6 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.all(12),
@@ -221,9 +241,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   SizedBox(width: 10),
-
                   Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
@@ -232,7 +250,34 @@ class HomePage extends StatelessWidget {
                     ),
                     child: Text("Atur Fitur"),
                   )
+                ],
+              ),
+            ),
 
+            SizedBox(height: 20),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: GridView.count(
+                crossAxisCount: 4,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  menuGrid(Icons.account_balance_wallet, "Top Up"),
+                  menuGrid(Icons.credit_card, "BRIZZI"),
+                  menuGrid(Icons.receipt_long, "Tagihan"),
+                  menuGrid(Icons.swap_horiz, "Transfer"),
+                  menuGrid(Icons.shopping_bag, "Lifestyle"),
+                  menuGrid(Icons.account_balance, "Setor & Tarik"),
+                  menuGrid(Icons.menu_book, "Catatan"),
+                  menuGrid(Icons.show_chart, "Investasi"),
+                  menuGrid(Icons.volunteer_activism, "Donasi"),
+                  menuGrid(Icons.phone_iphone, "Virtual Debit"),
+                  menuGrid(Icons.credit_card_outlined, "Kartu Kredit"),
+                  menuGrid(Icons.security, "Asuransi"),
+                  menuGrid(Icons.account_balance_wallet_outlined, "Pinjaman"),
+                  menuGrid(Icons.currency_exchange, "Konversi Valas"),
+                  menuGrid(Icons.business, "Produk BRI Lainnya"),
                 ],
               ),
             ),
