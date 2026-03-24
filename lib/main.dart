@@ -4,6 +4,10 @@ void main() {
   runApp(BRImoUI());
 }
 
+const primaryBlue = Color(0xFF00529C);
+const secondaryBlue = Color(0xFF007BFF);
+const lightBlue = Color(0xFFE6F0FA);
+
 class BRImoUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,6 +20,7 @@ class BRImoUI extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
 
+
   Widget menuUtama(IconData icon, String title) {
     return Column(
       children: [
@@ -25,7 +30,7 @@ class HomePage extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Icon(icon, color: Color(0xFF00529C), size: 26),
+          child: Icon(icon, color: primaryBlue, size: 26),
         ),
         SizedBox(height: 6),
         Text(
@@ -47,7 +52,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(14),
               ),
-              child: Icon(icon, size: 28, color: Color(0xFF00529C)),
+              child: Icon(icon, size:28, color: primaryBlue),
             ),
             if (notif)
               Positioned(
@@ -102,6 +107,24 @@ class HomePage extends StatelessWidget {
     );
   }
 
+
+  Widget navItem(IconData icon, String label, bool active) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, color: active ? primaryBlue : Colors.grey),
+        SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 11,
+            color: active ? primaryBlue : Colors.grey,
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,140 +134,151 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
 
-            Container(
-              height: 200,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF00529C),
-                    Color(0xFF007BFF),
-                  ],
-                ),
-              ),
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("BRImo",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text("Selamat Malam",
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                          Text("MOH.SEPTIANTO H.A",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          Icon(Icons.notifications, color: Colors.white),
-                          SizedBox(width: 12),
-                          Icon(Icons.headset_mic, color: Colors.white),
-                        ],
-                      )
-
-                    ],
+            Stack(
+              children: [
+                Container(
+                  height: 300,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/background.png"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-            ),
 
-            Container(
-              margin: EdgeInsets.all(16),
-              padding: EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(22),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 10,
-                    offset: Offset(0, 4),
-                  )
-                ]
-              ),
-              child: Column(
-                children: [
-
-                  Container(
-                    padding: EdgeInsets.all(18),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xFF00529C),
-                          Color(0xFF007BFF),
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-
-                        Text("Saldo Rekening Utama",
-                          style: TextStyle(color: Colors.white70),
-                        ),
-
-                        SizedBox(height: 10),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Rp7.672.000,00",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Icon(Icons.visibility, color: Colors.white)
-                          ],
-                        ),
-
-                        SizedBox(height: 10),
-                        Divider(color: Colors.white54),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Semua Rekeningmu",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Icon(Icons.arrow_forward, color: Colors.white)
-                          ],
-                        ),
+                Container(
+                  height: 300,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        primaryBlue.withOpacity(0.1),
+                        secondaryBlue.withOpacity(0.6),
                       ],
                     ),
                   ),
+                ),
 
-                  SizedBox(height: 16),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                SafeArea(
+                  child: Column(
                     children: [
-                      menuUtama(Icons.swap_horiz, "Transfer"),
-                      menuUtama(Icons.account_balance_wallet, "BRIVA"),
-                      menuUtama(Icons.water_drop, "PDAM"),
-                      menuUtama(Icons.phone_android, "Pulsa/Data"),
+
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Row(
+                          mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                              children: [
+                                Text("BRImo",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold)),
+                                Text("Selamat Pagi",
+                                    style:
+                                        TextStyle(color: Colors.white70)),
+                                Text("MOH.SEPTIANTO H.A",
+                                    style:
+                                        TextStyle(color: Colors.white)),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.notifications,
+                                    color: Colors.white),
+                                SizedBox(width: 12),
+                                Icon(Icons.headset_mic,
+                                    color: Colors.white),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(22),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10,
+                              offset: Offset(0, 4),
+                            )
+                          ]
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(18),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [primaryBlue, secondaryBlue],
+                                ),
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Saldo Rekening Utama",
+                                    style: TextStyle(color: Colors.white70)),
+                                  
+                                  SizedBox(height: 10),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Rp7.672.000,00",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                      Icon(Icons.visibility, color: Colors.white)
+                                    ],
+                                  ),
+
+                                  SizedBox(height: 10),
+                                  Divider(color: Colors.white54),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Semua Rekeningmu",
+                                        style: TextStyle(color: Colors.white)),
+                                      Icon(Icons.arrow_forward, color: Colors.white)
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(height: 16),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                menuUtama(Icons.swap_horiz, "Transfer"),
+                                menuUtama(Icons.account_balance_wallet, "BRIVA"),
+                                menuUtama(Icons.water_drop, "PDAM"),
+                                menuUtama(Icons.phone_android, "Pulsa/Data"),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-
-                ],
-              ),
+                )
+              ],
             ),
+
+            SizedBox(height: 20),
 
             Container(
               height: 100,
@@ -277,13 +311,14 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius:
+                            BorderRadius.circular(30),
                       ),
                       child: Row(
                         children: [
                           Icon(Icons.search),
                           SizedBox(width: 8),
-                          Text("Cari Fitur"),
+                          Text("Cari Fitur")
                         ],
                       ),
                     ),
@@ -292,8 +327,9 @@ class HomePage extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Color(0xFFE6F0FA),
-                      borderRadius: BorderRadius.circular(20),
+                      color: lightBlue,
+                      borderRadius:
+                          BorderRadius.circular(20),
                     ),
                     child: Text("Atur Fitur"),
                   )
@@ -329,7 +365,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 30),
 
             Divider(
               color: Colors.grey.shade300,
@@ -343,23 +379,18 @@ class HomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  Text(
-                    "Spesial Untukmo",
-                    style: TextStyle(
+                  Text("Spesial Untukmu",
+                    style:TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 16
                     ),
                   ),
-
                   SizedBox(height: 6),
 
                   Text(
-                    "Cobain beragam cara baru untuk\nmemaksimalkan aktivitas perbankan kamu",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
-                    ),
+                    "Cobain beragam cara baru untuk\n"
+                    "memaksimalkan aktivitas perbankan kamu",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
                   ),
 
                   SizedBox(height: 14),
@@ -373,14 +404,41 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
-
-            SizedBox(height: 30),
-
           ],
+        ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: primaryBlue,
+        shape: CircleBorder(),
+        child: Icon(Icons.qr_code),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.centerDocked,
+
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 6,
+        elevation: 10,
+        child: Container(
+          height: 65,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+
+              navItem(Icons.home, "Home", true),
+              navItem(Icons.list, "Mutasi", false),
+
+              SizedBox(width: 40),
+
+              navItem(Icons.mail, "Aktivitas", false),
+              navItem(Icons.person, "Akun", false),
+            ],
+          ),
         ),
       ),
     );
